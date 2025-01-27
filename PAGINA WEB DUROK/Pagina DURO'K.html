@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DURO'K - Soluciones Empresariales</title>
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        header {
+            background: linear-gradient(135deg, #0044cc, #0066ff);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .logo {
+            max-width: 300px;
+            margin-bottom: 1rem;
+            filter: brightness(0) invert(1); /* Hace el logo blanco */
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .product-category {
+            margin: 3rem 0;
+        }
+        .product-category h2 {
+            color: #0044cc;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        .product-category h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: #0044cc;
+        }
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        .product-item {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .product-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .product-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        .product-item h3 {
+            margin: 0.5rem 0;
+            color: #0044cc;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 1000;
+        }
+        .modal-content {
+            position: relative;
+            background-color: white;
+            margin: 10% auto;
+            padding: 2rem;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .close-button {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+        .contact-info {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .contact-info p {
+            font-size: 1.2rem;
+            color: #555;
+            margin: 0.5rem 0;
+        }
+        .contact-info a {
+            color: #0044cc;
+            text-decoration: none;
+        }
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #0044cc, #0066ff);
+            color: white;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="./images/DUROK LOGO.png" alt="DURO K Logo" class="logo">
+        <h1>Bienvenido a DURO'K</h1>
+        <p>Más de 10 años brindando soluciones empresariales</p>
+    </header>
+
+    <div class="container">
+        <section class="product-category">
+            <h2>Productos de Metal</h2>
+            <div class="products">
+                <div class="product-item" onclick="showDetails('fierros')">
+                    <img src="./images/FIERROS.png" alt="FIERROS">
+                    <h3>Fierros</h3>
+                </div>
+                <div class="product-item" onclick="showDetails('carretillas')">
+                    <img src="./images/CARRETILLA.png" alt="CARRETILLA">
+                    <h3>Carretillas</h3>
+                </div>
+                <div class="product-item" onclick="showDetails('trompo')">
+                    <img src="./images/TROMPO.png" alt="TROMPO">
+                    <h3>Trompo / Mezclador de Concreto</h3>
+                </div>
+            </div>
+        </section>
+
+        <section class="product-category">
+            <h2>Productos de Plástico</h2>
+            <div class="products">
+                <div class="product-item" onclick="showDetails('bidon80')">
+                    <img src="./images/BIDON CILINDRICO 80LT.png" alt="BIDON CILINDRICO 80LT">
+                    <h3>Bidón Cilíndrico - 80L</h3>
+                </div>
+                <div class="product-item" onclick="showDetails('bidon60')">
+                    <img src="./images/BIDON CILINDRICO 60LT.png" alt="BIDON CILINDRICO 60LT">
+                    <h3>Bidón Cilíndrico - 60L</h3>
+                </div>
+                <div class="product-item" onclick="showDetails('bidonCuadrado80')">
+                    <img src="./images/BIDON CUADRADO 80LT.png" alt="BIDON CUADRADO 80LT">
+                    <h3>Bidón Cuadrado - 80L</h3>
+                </div>
+                <div class="product-item" onclick="showDetails('bidonCuadrado60')">
+                    <img src="./images/BIDON CUADRADO 60LT.png" alt="BIDON CUADRADO 60LT">
+                    <h3>Bidón Cuadrado - 60L</h3>
+                </div>
+            </div>
+        </section>
+
+        <section class="product-category">
+            <h2>Productos de Madera</h2>
+            <div class="products">
+                <div class="product-item" onclick="showDetails('escritorio')">
+                    <img src="./images/ESCRITORIO.png" alt="ESCRITORIO">
+                    <h3>Escritorio</h3>
+                </div>
+                <div class="product-item" onclick="showDetails('counter')">
+                    <img src="./images/COUNTER.png" alt="COUNTER">
+                    <h3>Counter de Oficina</h3>
+                </div>
+            </div>
+        </section>
+
+        <section class="product-category">
+            <h2>Productos de Fibra de Vidrio</h2>
+            <div class="products">
+                <div class="product-item" onclick="showDetails('carroceria')">
+                    <img src="./images/CARROCERIAS.png" alt="CARROCERIAS">
+                    <h3>Carrocerías</h3>
+                </div>
+                <div class="product-item" onclick="showDetails('caseta')">
+                    <img src="./images/CASETA.png" alt="CASETA">
+                    <h3>Caseta para Camioneta</h3>
+                </div>
+            </div>
+        </section>
+
+        <div class="contact-info">
+            <p>¿Interesado en nuestros productos?</p>
+            <p>Contáctanos al: <strong>+51 969 043 455</strong></p>
+            <p>Email: <a href="mailto:durokventas@gmail.com">durokventas@gmail.com</a></p>
+            <p>Atención personalizada de lunes a sábado</p>
+        </div>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title"></h2>
+            <div id="modal-description"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 DURO'K. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        const productDetails = {
+            fierros: {
+                title: "Fierros",
+                description: "Varillas de construcción de alta calidad en diferentes medidas. Perfectas para todo tipo de construcciones. Disponible en diversos diámetros y longitudes según sus necesidades."
+            },
+            carretillas: {
+                title: "Carretillas",
+                description: "Carretillas resistentes para construcción y uso industrial. Capacidad de carga de hasta 100kg. Fabricadas con materiales duraderos y diseño ergonómico."
+            },
+            trompo: {
+                title: "Trompo / Mezclador de Concreto",
+                description: "Mezclador de concreto profesional con capacidad de 9 pies cúbicos. Motor potente y duradero. Ideal para proyectos de construcción medianos y grandes."
+            },
+            bidon80: {
+                title: "Bidón Cilíndrico 80L",
+                description: "Bidón de almacenamiento de 80 litros. Fabricado en plástico de alta resistencia. Ideal para almacenamiento de agua y líquidos no corrosivos."
+            },
+            bidon60: {
+                title: "Bidón Cilíndrico 60L",
+                description: "Bidón de almacenamiento de 60 litros. Material duradero y resistente a impactos. Perfecto para uso doméstico e industrial."
+            },
+            bidonCuadrado80: {
+                title: "Bidón Cuadrado 80L",
+                description: "Bidón cuadrado de 80 litros. Diseño optimizado para mejor aprovechamiento del espacio. Incluye tapa hermética."
+            },
+            bidonCuadrado60: {
+                title: "Bidón Cuadrado 60L",
+                description: "Bidón cuadrado de 60 litros. Fácil de apilar y almacenar. Material resistente a rayos UV y condiciones climáticas extremas."
+            },
+            escritorio: {
+                title: "Escritorio",
+                description: "Escritorio ejecutivo de madera seleccionada. Diseño moderno y funcional. Incluye cajones con cierre suave y organizador de cables."
+            },
+            counter: {
+                title: "Counter de Oficina",
+                description: "Counter de recepción profesional. Fabricado en madera de alta calidad. Diseño ergonómico con espacio de almacenamiento integrado."
+            },
+            carroceria: {
+                title: "Carrocerías",
+                description: "Carrocerías de fibra de vidrio para diversos vehículos. Resistentes a impactos y condiciones climáticas. Diseño aerodinámico y ligero."
+            },
+            caseta: {
+                title: "Caseta para Camioneta",
+                description: "Caseta de fibra de vidrio para camionetas. Diseño aerodinámico que reduce el consumo de combustible. Incluye sistema de cierre seguro."
+            }
+        };
+
+        function showDetails(productId) {
+            const modal = document.getElementById('modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDescription = document.getElementById('modal-description');
+            
+            const product = productDetails[productId];
+            modalTitle.textContent = product.title;
+            modalDescription.textContent = product.description;
+            
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
